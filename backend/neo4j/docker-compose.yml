@@ -1,0 +1,25 @@
+version: '3'
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    ports:
+      - "7474:7474"   # HTTP port for Neo4j browser
+      - "7687:7687"   # Bolt port for database connections
+    environment:
+      - NEO4J_AUTH=neo4j/testpassword   # Set default username and password for Neo4j
+    volumes:
+      - neo4j_data:/data   # Persist Neo4j data in a Docker volume
+      - neo4j_logs:/logs   # Persist logs in a Docker volume
+      - neo4j_import:/var/lib/neo4j/import   # Optional: You can import data to Neo4j
+    networks:
+      - neo4j_network   # Define a custom network (optional)
+      
+volumes:
+  neo4j_data:    # Persist Neo4j data
+  neo4j_logs:    # Persist Neo4j logs
+  neo4j_import:  # Optional: Volume for importing data to Neo4j
+
+networks:
+  neo4j_network:   # Optional custom network
+

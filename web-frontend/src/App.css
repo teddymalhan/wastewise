@@ -1,0 +1,171 @@
+/* General App Styles */
+.app-container {
+  height: 60rem;
+  width: 100vw;
+  max-width: 430px; /* iPhone width */
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  padding-top: 15rem;
+}
+
+.home-screen {
+  height: 100%;
+  width: 100%;
+  /* background: linear-gradient(to bottom, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%); */
+  background-image: url('./assets/homebg.png');
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 5rem;
+}
+
+.app-title {
+  font-size: 2rem; /* Adjusted size for smaller screens */
+  font-weight: bold;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.scan-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.scan-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.result-screen {
+  height: 100%;
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: 5rem;
+}
+
+.back-button {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.item-title {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.item-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.category-box {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.info-box {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-button {
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+}
+
+body {
+  background-color: #ffe4e4;
+}
+
+.learn-more-page {
+  height: 100vh;
+  width: 100vw;
+  max-width: 430px;
+  margin: 0 auto;
+  background-color: #f7bfbf;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.back-button {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #555;
+}
+
+.info-container {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-text {
+  color: #f7bfbf;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.action-button {
+  background-color: transparent;
+  border: none;
+  color: #f7bfbf;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #f7bfbf;
+  margin: 1.5rem 0;
+}
+
+
+/* Category Background Colors */
+.bg-compostable { background-color: #f0fff0; }
+.bg-recyclable { background-color: #f0f8ff; }
+.bg-mixed { background-color: #fffff0; }
+.bg-landfill { background-color: #f8f8f8; }
+

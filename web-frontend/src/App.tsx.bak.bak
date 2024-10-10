@@ -1,0 +1,153 @@
+import React, { useState } from 'react';
+import { ChevronLeft } from 'lucide-react';
+import './App.css';
+
+import compostableImage from './assets/compostable.png';
+import recyclableImage from './assets/recyclable.png';
+import mixedImage from './assets/mixed-paper.png';
+import landfillImage from './assets/landfill.png';
+
+type WasteCategory = 'green bin' | 'blue bin' | 'yellow bin' | 'garbage bin' | null;
+
+const App: React.FC = () => {
+  const [currentScreen, setCurrentScreen] = useState<'home' | 'result'>('home');
+  const [wasteCategory, setWasteCategory] = useState<WasteCategory>(null);
+  const [scannedItem, setScannedItem] = useState<string>('');
+
+  const handleStartScan = () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = async (e) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file); // Ensure the key is 'file' to match your API
+
+      try {
+        // Replace this URL with your actual API endpoint
+        const response = await fetch('http://localhost:8000/upload/', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            accept: 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        // Assuming the API returns this format: {"object_name": "Broken bottle", "bin_type": "garbage bin"}
+        const objectName = result.object_name; // Extracts the object name
+        const binType = result.bin_type; // Extracts the bin type
+
+        setScannedItem(objectName);
+
+        // Map the binType to waste categories in your app
+        const binCategoryMap: Record<string, WasteCategory> = {
+          "green bin": 'green bin',
+          "blue bin": 'blue bin',
+          "yellow bin": 'yellow bin',
+          "garbage bin": 'garbage bin',
+        };
+
+        setWasteCategory(binCategoryMap[binType.toLowerCase()] || null);
+        setCurrentScreen('result');
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        setWasteCategory(null); // Reset if there's an error
+      }
+    }
+  };
+  input.click();
+};
+
+  const getCategoryData = (category: WasteCategory) => {
+    switch (category) {
+      case 'green bin':
+        return {
+          color: '#a8e0a8',
+          title: 'COMPOSTABLES',
+          message: 'AI models are still learning—double-check that your item is compostable before tossing it in the green bin! Let\'s keep the planet green together!',
+        };
+      case 'blue bin':
+        return {
+          color: '#a8c8e0',
+          title: 'RECYCLABLES',
+          message: 'Remember: Empty food scraps, avoid Styrofoam, and clean your containers before recycling!',
+        };
+      case 'yellow bin':
+        return {
+          color: '#e0dca8',
+          title: 'MIXED PAPER',
+          message: 'Double-check your paper—if it\'s food-soiled, toss it in the green bin for compost, not yellow bin!',
+        };
+      case 'garbage bin':
+        return {
+          color: '#c0c0c0',
+          title: 'LANDFILL WASTE',
+          message: 'Remember: Empty food scraps, avoid Styrofoam, and clean your containers before recycling!',
+        };
+      default:
+        return {
+          color: '#ffffff',
+          title: 'UNKNOWN',
+          message: 'Unable to categorize this item.',
+        };
+    }
+  };
+
+  const getCategoryImage = (category: WasteCategory) => {
+    switch (category) {
+      case 'green bin':
+        return compostableImage;
+      case 'blue bin':
+        return recyclableImage;
+      case 'yellow bin':
+        return mixedImage;
+      case 'garbage bin':
+        return landfillImage;
+    }
+  };
+
+  return (
+    <div className="app-container">
+      {currentScreen === 'home' ? (
+        <div className="home-screen">
+          <div className="app-title">WASTEWISE</div>
+          <button onClick={handleStartScan} className="scan-button">
+            START SCAN
+          </button>
+          <div style={{ height: '5rem' }}></div>
+        </div>
+      ) : (
+        <div className={`result-screen bg-${wasteCategory}`}>
+          <button onClick={() => setCurrentScreen('home')} className="back-button">
+            <ChevronLeft size={24} />
+          </button>
+          <div className="item-title">Your item:</div>
+          <div className="item-name">{scannedItem.toUpperCase()}</div>
+          <div className="category-box">
+          <img
+                src={getCategoryImage(wasteCategory)}
+                alt={wasteCategory || 'unknown category'}
+                style={{ width: '100%', height: '100%', borderRadius: '1.5rem', objectFit: 'cover' }}
+              />
+          </div>
+          <div className="info-box">
+            <p>{getCategoryData(wasteCategory).message}</p>
+          </div>
+          <div className="button-container">
+            <button className="action-button">Learn more</button>
+            <button className="action-button">Spot an issue? Let us know</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;

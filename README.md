@@ -350,67 +350,11 @@ Install wastewise using one of the following methods:
 ```
 
 
-**Using `npm`** &nbsp; [<img align="center" src="" />]()
-
-```sh
-❯ echo 'INSERT-INSTALL-COMMAND-HERE'
-```
-
-
 **Using `docker`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Docker-2CA5E0.svg?style={badge_style}&logo=docker&logoColor=white" />](https://www.docker.com/)
 
 ```sh
 ❯ docker build -t teddymalhan/wastewise .
 ```
-
-
-
-
-###  Usage
-Run wastewise using the following command:
-**Using `pip`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Pip-3776AB.svg?style={badge_style}&logo=pypi&logoColor=white" />](https://pypi.org/project/pip/)
-
-```sh
-❯ python {entrypoint}
-```
-
-
-**Using `npm`** &nbsp; [<img align="center" src="" />]()
-
-```sh
-❯ echo 'INSERT-RUN-COMMAND-HERE'
-```
-
-
-**Using `docker`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Docker-2CA5E0.svg?style={badge_style}&logo=docker&logoColor=white" />](https://www.docker.com/)
-
-```sh
-❯ docker run -it {image_name}
-```
-
-
-###  Testing
-Run the test suite using the following command:
-**Using `pip`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Pip-3776AB.svg?style={badge_style}&logo=pypi&logoColor=white" />](https://pypi.org/project/pip/)
-
-```sh
-❯ pytest
-```
-
-
-**Using `npm`** &nbsp; [<img align="center" src="" />]()
-
-```sh
-❯ echo 'INSERT-TEST-COMMAND-HERE'
-```
-
-
----
-##  Project Roadmap
-
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
 
 ---
 
@@ -454,17 +398,5 @@ Run the test suite using the following command:
    </a>
 </p>
 </details>
-
----
-
-##  License
-
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
-
----
-
-##  Acknowledgments
-
-- List any resources, contributors, inspiration, etc. here.
 
 ---
